@@ -4,6 +4,7 @@ package lumincore
 type ISockMessage interface {
 	Pass() bool     // lets the client know if reg and auth have passed
 	Serial() string // gets the device serial
+	SetAuth(v bool)
 }
 type IAuthSockMsg interface {
 	IsRegPass() bool
@@ -20,6 +21,10 @@ type SockMessage struct {
 	SID  string `json:"serial"`
 }
 
+// SetAuth : sets the auth status for the message, this is a setter property for SockMessage
+func (m *SockMessage) SetAuth(v bool) {
+	m.Auth = v
+}
 func (m *SockMessage) Pass() bool {
 	return m.Auth && m.Reg // pass is ok only when both reg and auth are true
 }
