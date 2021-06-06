@@ -14,31 +14,31 @@ type ISchedSockMsg interface {
 }
 
 // Its this message that this microservice will shuttle thru the socket
-type Message struct {
+type SockMessage struct {
 	Auth bool   `json:"auth"`
 	Reg  bool   `json:"reg"`
 	SID  string `json:"serial"`
 }
 
-func (m *Message) Pass() bool {
+func (m *SockMessage) Pass() bool {
 	return m.Auth && m.Reg // pass is ok only when both reg and auth are true
 }
-func (m *Message) Serial() string {
+func (m *SockMessage) Serial() string {
 	return m.SID
 }
-func (m *Message) IsRegPass() bool {
+func (m *SockMessage) IsRegPass() bool {
 	return m.Reg == true
 }
-func (m *Message) IsAuthPass() bool {
+func (m *SockMessage) IsAuthPass() bool {
 	return m.Auth == true
 }
 
-// SchedsMessage : just message with extra field for schedules, extension on the Message
-type SchedsMessage struct {
-	*Message
+// SchedSockMessage : just message with extra field for schedules, extension on the SockMessage
+type SchedSockMessage struct {
+	*SockMessage
 	Scheds interface{} `json:"scheds"`
 }
 
-func (sm *SchedsMessage) JRStates() interface{} {
+func (sm *SchedSockMessage) JRStates() interface{} {
 	return sm.Scheds
 }
