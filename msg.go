@@ -1,16 +1,15 @@
 package lumincore
 
-/*Reg authentication with luminapi server will emit messages of this datashape. Since we need this in the luminapi as well as autolumin we capture this as common package here
-Data objects here are accessible over interfaces */
-type IMessage interface {
+/*Auth microservice will use this as payload to send messages over on the socket, On the receiver side this message then can be unmarshalled to read its properties */
+type ISockMessage interface {
 	Pass() bool     // lets the client know if reg and auth have passed
 	Serial() string // gets the device serial
 }
-type IAuthMessage interface {
+type IAuthSockMsg interface {
 	IsRegPass() bool
 	IsAuthPass() bool
 }
-type ISchedMessage interface {
+type ISchedSockMsg interface {
 	JRStates() interface{} // json relay states
 }
 
