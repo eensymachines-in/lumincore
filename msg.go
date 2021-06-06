@@ -4,11 +4,11 @@ package lumincore
 type ISockMessage interface {
 	Pass() bool     // lets the client know if reg and auth have passed
 	Serial() string // gets the device serial
-	SetAuth(v bool)
 }
 type IAuthSockMsg interface {
 	IsRegPass() bool
 	IsAuthPass() bool
+	SetAuth(v bool)
 }
 type ISchedSockMsg interface {
 	JRStates() interface{} // json relay states
