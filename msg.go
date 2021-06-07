@@ -1,5 +1,7 @@
 package lumincore
 
+import "github.com/eensymachines-in/scheduling"
+
 /*Auth microservice will use this as payload to send messages over on the socket, On the receiver side this message then can be unmarshalled to read its properties */
 type ISockMessage interface {
 	Pass() bool     // lets the client know if reg and auth have passed
@@ -41,7 +43,7 @@ func (m *SockMessage) IsAuthPass() bool {
 // SchedSockMessage : just message with extra field for schedules, extension on the SockMessage
 type SchedSockMessage struct {
 	*SockMessage
-	Scheds interface{} `json:"scheds"`
+	Scheds []scheduling.JSONRelayState `json:"scheds"`
 }
 
 func (sm *SchedSockMessage) JRStates() interface{} {
