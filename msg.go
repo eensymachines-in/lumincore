@@ -46,6 +46,6 @@ type SchedSockMessage struct {
 	Scheds []scheduling.JSONRelayState `json:"scheds"`
 }
 
-func (sm *SchedSockMessage) JRStates() interface{} {
+func (sm *SchedSockMessage) JRStates() []scheduling.JSONRelayState {
 	return sm.Scheds
 }
