@@ -13,7 +13,7 @@ type IAuthSockMsg interface {
 	SetAuth(v bool)
 }
 type ISchedSockMsg interface {
-	JRStates() interface{} // json relay states
+	JRStates() []scheduling.JSONRelayState // json relay states
 }
 
 // Its this message that this microservice will shuttle thru the socket
